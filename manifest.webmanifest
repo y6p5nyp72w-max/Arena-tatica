@@ -1,0 +1,9 @@
+{
+  "name": "Arena Tática — Assistente para Clash Royale",
+  "short_name": "Arena Tática",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#101827",
+  "description": "Assistente tático manual para analisar defesas e contra-ataques."
+}
