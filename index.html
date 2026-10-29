@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Arena Tática">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Arena Tática — Clash Royale</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#131f32;--panel2:#1b2a41;--line:#30415c;--text:#f3f6fc;--muted:#a9b8ce;--gold:#f5c451;--blue:#65b8ff;--green:#65d6a3;--red:#ff7e86}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1a2d49 0,#0b1220 58%);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);padding:env(safe-area-inset-top) 14px calc(22px + env(safe-area-inset-bottom));}
+main{max-width:780px;margin:0 auto}.top{display:flex;align-items:center;gap:12px;padding:18px 2px 12px}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#f5c451,#c77a26);display:grid;place-items:center;color:#24180a;font-size:26px;box-shadow:0 8px 25px #0005}.eyebrow{font-size:11px;letter-spacing:1.5px;color:var(--gold);font-weight:800}.top h1{font-size:23px;margin:1px 0}.sub{font-size:12px;color:var(--muted)}.pill{margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:7px 10px;color:var(--green);font-size:11px;white-space:nowrap}
+.card{background:linear-gradient(160deg,#17253a,#101a2b);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 10px 28px #0002}.section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.section-title h2{font-size:16px;margin:0}.hint{font-size:12px;color:var(--muted);line-height:1.45}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:flex;flex-direction:column;gap:6px}.field label,.label{font-size:12px;color:var(--muted);font-weight:650}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:#0b1423;color:var(--text);font:inherit;min-width:0}input:focus,select:focus,textarea:focus{outline:2px solid #65b8ff66;border-color:var(--blue)}.range-row{display:flex;align-items:center;gap:10px}.range-row input{padding:0;accent-color:var(--gold)}.value{font-weight:800;color:var(--gold);min-width:42px;text-align:right}.deck-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.deck-slot{background:#0b1423;border:1px solid var(--line);border-radius:12px;padding:9px}.slot-head{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px}.slot-head b{color:var(--gold)}.deck-slot select{padding:9px 7px;font-size:13px}.btn{border:0;border-radius:12px;padding:13px 15px;font-weight:800;font-size:14px;cursor:pointer}.primary{background:linear-gradient(110deg,#f5c451,#e9a33a);color:#24180a;width:100%;box-shadow:0 6px 18px #e9a33a22}.secondary{background:#243650;color:var(--text);border:1px solid var(--line)}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#0b1423;border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}.stat b{display:block;font-size:19px;color:var(--gold)}.stat span{font-size:10px;color:var(--muted)}.result{display:none}.result.show{display:block}.verdict{background:#102a2a;border:1px solid #2e7668;border-radius:13px;padding:13px;margin-bottom:10px}.verdict h3{margin:0 0 5px;font-size:16px}.tag{display:inline-block;border-radius:7px;padding:4px 7px;font-size:10px;font-weight:800;background:#283c57;color:#c5ddff;margin:2px 3px 2px 0}.tag.good{background:#164538;color:#9af0c9}.tag.warn{background:#493a1c;color:#ffe09a}.steps{padding-left:20px;margin:8px 0}.steps li{margin:8px 0;line-height:1.45}.small{font-size:11px;color:var(--muted);line-height:1.5}.footer{text-align:center;color:#8191a9;font-size:11px;padding:12px 5px}.danger{color:#ffb3b7}.check{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--muted);margin-top:10px}.check input{width:auto;margin-top:2px;accent-color:var(--gold)}@media(min-width:600px){.deck-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.top h1{font-size:27px}}
+</style>
+</head>
+<body><main>
+<header class="top"><div class="logo">⚔</div><div><div class="eyebrow">BATTLE INTELLIGENCE</div><h1>Arena Tática</h1><div class="sub">Assistente de decisões para Clash Royale</div></div><div class="pill">● PROTÓTIPO</div></header>
+<section class="card">
+<div class="section-title"><h2>01 · Sua situação</h2><span class="tag">Entrada manual</span></div>
+<div class="grid">
+<div class="field"><label for="phase">Fase da partida</label><select id="phase"><option value="single">Elixir normal</option><option value="double">Elixir dobrado</option><option value="triple">Elixir triplicado / final</option></select></div>
+<div class="field"><label for="lane">Rota ameaçada</label><select id="lane"><option value="left">Esquerda</option><option value="right">Direita</option><option value="center">Centro / ambas</option></select></div>
+<div class="field"><label for="myTower">Vida da sua torre (aprox.)</label><select id="myTower"><option value="high">Alta — acima de 60%</option><option value="mid">Média — 30–60%</option><option value="low">Baixa — abaixo de 30%</option></select></div>
+<div class="field"><label for="enemyTower">Vida da torre inimiga</label><select id="enemyTower"><option value="high">Alta — acima de 60%</option><option value="mid">Média — 30–60%</option><option value="low">Baixa — abaixo de 30%</option></select></div>
+</div>
+<div style="margin-top:13px"><div class="section-title"><label for="myElixir" class="label">Seu elixir</label><div class="value" id="myElixirOut">5 / 10</div></div><div class="range-row"><input id="myElixir" type="range" min="0" max="10" value="5" step="1" aria-label="Seu elixir"><span class="value" id="myElixirNum">5</span></div></div>
+<div style="margin-top:13px"><div class="section-title"><label for="enemyElixir" class="label">Elixir estimado do inimigo</label><div class="value" id="enemyElixirOut">5 / 10</div></div><div class="range-row"><input id="enemyElixir" type="range" min="0" max="10" value="5" step="1" aria-label="Elixir inimigo"><span class="value" id="enemyElixirNum">5</span></div><div class="small">Estimativa manual. Se não souber, mantenha um valor aproximado.</div></div>
+</section>
+<section class="card">
+<div class="section-title"><h2>02 · Seu deck (8 cartas)</h2><span class="tag" id="avgTag">Média —</span></div>
+<div class="hint" style="margin-bottom:11px">Selecione as oito cartas do seu deck. A lista é inicial e pode ser ampliada no código.</div>
+<div class="deck-grid" id="deckGrid"></div>
+<div class="stats" style="margin-top:10px"><div class="stat"><b id="deckAvg">—</b><span>CUSTO MÉDIO</span></div><div class="stat"><b id="deckCount">0/8</b><span>CARTAS SELECIONADAS</span></div><div class="stat"><b id="handCount">4</b><span>CARTAS NA MÃO*</span></div></div>
+<div class="small" style="margin-top:8px">*O protótipo assume 4 cartas iniciais selecionadas manualmente abaixo; não rastreia o ciclo automaticamente.</div>
+<div style="margin-top:13px"><label class="label" for="hand">Cartas disponíveis na sua mão (escolha até 4)</label><div id="handGrid" class="deck-grid" style="margin-top:7px"></div></div>
+</section>
+<section class="card">
+<div class="section-title"><h2>03 · A ameaça inimiga</h2><span class="tag warn">O que você viu?</span></div>
+<div class="grid">
+<div class="field"><label for="enemyCard">Carta / ameaça principal</label><select id="enemyCard"></select></div>
+<div class="field"><label for="enemySupport">Apoio inimigo</label><select id="enemySupport"><option value="">Nenhum / desconhecido</option></select></div>
+<div class="field"><label for="distance">Posição da ameaça</label><select id="distance"><option value="far">Ainda longe da ponte</option><option value="bridge" selected>Na ponte</option><option value="near">Perto da sua torre</option><option value="tower">Atacando a torre</option></select></div>
+<div class="field"><label for="enemyType">Tipo de ameaça</label><select id="enemyType"><option value="auto">Detectar pela carta</option><option value="ground">Terrestre</option><option value="air">Aérea</option><option value="swarm">Enxame</option><option value="building">Condição de vitória / prédio</option></select></div>
+</div>
+<div class="check"><input id="spellRisk" type="checkbox"><label for="spellRisk">O inimigo ainda pode ter um feitiço para eliminar tropas frágeis.</label></div>
+<div class="check"><input id="counterpush" type="checkbox" checked><label for="counterpush">Tenho tropas sobreviventes ou quero preparar contra-ataque.</label></div>
+</section>
+<button class="btn primary" id="analyze">⚡ CALCULAR DEFESA E CONTRA-ATAQUE</button>
+<div class="buttons"><button class="btn secondary" id="reset">Limpar análise</button><button class="btn secondary" id="copy">Copiar recomendação</button></div>
+<section class="card result" id="result" aria-live="polite">
+<div class="section-title"><h2>04 · Plano recomendado</h2><span class="tag good" id="confidence">ANÁLISE</span></div>
+<div class="verdict"><h3 id="headline">Plano tático</h3><div id="summary" class="hint"></div></div>
+<div class="stats"><div class="stat"><b id="defCost">—</b><span>CUSTO DEFESA</span></div><div class="stat"><b id="remaining">—</b><span>ELIXIR RESTANTE</span></div><div class="stat"><b id="trade">—</b><span>TROCA ESTIMADA</span></div></div>
+<h3 style="font-size:14px;margin:16px 0 6px">Sequência de ações</h3><ol class="steps" id="steps"></ol>
+<h3 style="font-size:14px;margin:16px 0 6px">Por que esta decisão?</h3><div id="reasons" class="hint"></div>
+<p class="small danger">A recomendação é heurística, não previsão garantida. O estado da arena, níveis das cartas, posicionamento exato e cartas ocultas podem mudar a melhor jogada.</p>
+</section>
+<section class="card"><div class="section-title"><h2>Como usar na partida</h2></div><ol class="steps"><li>Abra o assistente no Safari e deixe-o pronto antes da partida.</li><li>Informe seu elixir, as cartas na mão e a ameaça observada.</li><li>Toque em “Calcular defesa e contra-ataque”.</li><li>Use o plano como referência e execute você mesmo as jogadas no jogo.</li></ol><div class="small">Esta versão não lê a partida automaticamente e não controla o jogo. É um protótipo de apoio tático com entrada manual.</div></section>
+<div class="footer">Arena Tática · Protótipo independente, não afiliado à Supercell.</div>
+</main>
+<script>
+const cards = [
+["Cavaleiro",3,"ground","single"],["Arqueiras",3,"air","single"],["Mosqueteira",4,"air","single"],["Mini P.E.K.K.A",4,"ground","single"],["Valquíria",4,"ground","splash"],["P.E.K.K.A",7,"ground","single"],["Mega Cavaleiro",7,"ground","splash"],["Torre Inferno",5,"building","tank"],["Tesla",4,"building","air"],["Canhão",3,"building","ground"],["Torre de Bombas",4,"building","splash"],["Lápide",3,"building","swarm"],["Exército de Esqueletos",3,"swarm","ground"],["Guardas",3,"ground","swarm"],["Goblins",2,"ground","swarm"],["Gangue de Goblins",3,"swarm","mixed"],["Esqueletos",1,"swarm","cycle"],["Morcegos",2,"air","swarm"],["Servos",3,"air","swarm"],["Horda de Servos",5,"air","swarm"],["Bebê Dragão",4,"air","splash"],["Dragão Infernal",4,"air","tank"],["Fênix",4,"air","single"],["Mago",5,"air","splash"],["Mago Elétrico",4,"air","stun"],["Caçador",4,"air","burst"],["Lenhador",4,"ground","single"],["Príncipe",5,"ground","charge"],["Príncipe das Trevas",4,"ground","splash"],["Ariete de Batalha",4,"ground","wincon"],["Corredor",4,"ground","wincon"],["Gigante",5,"ground","tank"],["Gigante Real",6,"ground","wincon"],["Golem",8,"ground","tank"],["Lava Hound",7,"air","tank"],["Balão",5,"air","wincon"],["Cemitério",5,"spell","wincon"],["Mineiro",3,"ground","wincon"],["Barril de Goblins",3,"spell","wincon"],["Quebra-Muros",2,"ground","wincon"],["Foguete",6,"spell","spell"],["Bola de Fogo",4,"spell","spell"],["Flechas",3,"spell","spell"],["Zap",2,"spell","spell"],["Tronco",2,"spell","spell"],["Veneno",4,"spell","spell"],["Relâmpago",6,"spell","spell"],["Congelamento",4,"spell","spell"],["Espírito de Gelo",1,"ground","cycle"],["Espírito Elétrico",1,"ground","cycle"],["Espírito de Fogo",1,"ground","cycle"],["Golem de Gelo",2,"ground","tank"],["Lançador",5,"ground","splash"],["Mãe Bruxa",4,"air","splash"],["Bruxa",5,"air","splash"],["Bruxa Sombria",4,"air","splash"],["Executor",5,"air","splash"],["Goblin com Dardo",3,"air","single"],["Princesa",3,"air","splash"],["Arqueiro Mágico",4,"air","pierce"],["Pescador",3,"ground","pull"],["Fornalha",4,"building","swarm"],["Cemitério",5,"spell","wincon"]
+];
+const uniqCards=[...new Map(cards.map(c=>[c[0],c])).values()];
+const deckGrid=document.getElementById("deckGrid"),handGrid=document.getElementById("handGrid");
+function optionsHTML(placeholder){return `<option value="">${placeholder}</option>`+uniqCards.map(c=>`<option value="${c[0]}">${c[0]} · ${c[1]}</option>`).join("")}
+for(let i=0;i<8;i++){let d=document.createElement("div");d.className="deck-slot";d.innerHTML=`<div class="slot-head"><span>ESPAÇO ${i+1}</span><b id="cost${i}">—</b></div><select class="deck-select" aria-label="Carta do deck ${i+1}">${optionsHTML("Escolher carta")}</select>`;deckGrid.appendChild(d)}
+for(let i=0;i<4;i++){let d=document.createElement("div");d.className="deck-slot";d.innerHTML=`<div class="slot-head"><span>MÃO ${i+1}</span><b>Disponível</b></div><select class="hand-select" aria-label="Carta na mão ${i+1}">${optionsHTML("Escolher carta")}</select>`;handGrid.appendChild(d)}
+document.getElementById("enemyCard").innerHTML=optionsHTML("Selecione ameaça");
+document.getElementById("enemySupport").innerHTML=optionsHTML("Nenhum / desconhecido");
+const getCard=n=>uniqCards.find(c=>c[0]===n);
+function updateDeck(){let vals=[...document.querySelectorAll(".deck-select")].map(s=>s.value).filter(Boolean),cost=vals.reduce((a,n)=>a+(getCard(n)?.[1]||0),0);document.getElementById("deckCount").textContent=vals.length+"/8";document.getElementById("deckAvg").textContent=vals.length?(cost/vals.length).toFixed(1):"—";document.getElementById("avgTag").textContent="Média "+(vals.length?(cost/vals.length).toFixed(1):"—");document.querySelectorAll(".deck-select").forEach((s,i)=>document.getElementById("cost"+i).textContent=s.value?(getCard(s.value)?.[1]+" elixir"):"—");document.getElementById("handCount").textContent=[...document.querySelectorAll(".hand-select")].filter(s=>s.value).length}
+document.querySelectorAll(".deck-select,.hand-select").forEach(s=>s.addEventListener("change",updateDeck));
+for(let id of ["myElixir","enemyElixir"]){document.getElementById(id).addEventListener("input",()=>{document.getElementById(id+"Out").textContent=document.getElementById(id).value+" / 10";document.getElementById(id+"Num").textContent=document.getElementById(id).value})}
+function recommend(){
+ const myE=+document.getElementById("myElixir").value,enemyE=+document.getElementById("enemyElixir").value,enemy=getCard(document.getElementById("enemyCard").value),support=getCard(document.getElementById("enemySupport").value),phase=document.getElementById("phase").value,lane=document.getElementById("lane").value,distance=document.getElementById("distance").value, tower=document.getElementById("myTower").value,enemyTower=document.getElementById("enemyTower").value,spellRisk=document.getElementById("spellRisk").checked,wantPush=document.getElementById("counterpush").checked;
+ const deck=[...document.querySelectorAll(".deck-select")].map(s=>getCard(s.value)).filter(Boolean),hand=[...document.querySelectorAll(".hand-select")].map(s=>getCard(s.value)).filter(Boolean);
+ if(!enemy){alert("Escolha a carta ou ameaça inimiga para calcular a resposta.");return}
+ if(!deck.length){alert("Selecione ao menos algumas cartas do seu deck para personalizar a análise.");return}
+ const threatType=document.getElementById("enemyType").value==="auto"?enemy[2]:document.getElementById("enemyType").value;
+ const candidates=(hand.length?hand:deck).filter(c=>c[1]<=myE);
+ const score=c=>{
+  let s=0, t=c[2],role=c[3],cost=c[1];
+  if(threatType==="air")s+=t==="air"?5:t==="building"? (c[0]==="Tesla"||c[0]==="Torre Inferno"?4:2):t==="spell"?1:-4;
+  else if(threatType==="swarm")s+=role==="splash"||c[0]==="Flechas"||c[0]==="Tronco"||c[0]==="Zap"?6:t==="spell"?2:-1;
+  else if(threatType==="building")s+=role==="wincon"?-1:role==="tank"||role==="single"||role==="pull"?3:1;
+  else s+=t==="ground"||t==="building"?3:t==="air"?2:1;
+  if(["tank","wincon","charge"].includes(enemy[3]))s+=["Torre Inferno","Mini P.E.K.K.A","P.E.K.K.A","Caçador","Dragão Infernal","Pescador"].includes(c[0])?5:0;
+  if(enemy[3]==="splash"||enemy[3]==="swarm")s+=["Valquíria","Bebê Dragão","Mago","Executor","Príncipe das Trevas","Flechas","Bola de Fogo"].includes(c[0])?3:0;
+  if(role==="cycle")s+=1;
+  s-=cost*0.75;
+  if(spellRisk&&["Esqueletos","Morcegos","Exército de Esqueletos","Horda de Servos"].includes(c[0]))s-=2;
+  if(distance==="tower"&&cost>=5)s-=1.5;
+  return s;
+ };
+ const ranked=candidates.map(c=>({c,s:score(c)})).sort((a,b)=>b.s-a.s);
+ let primary=ranked[0]?.c;
+ if(!primary){primary=deck.filter(c=>c[1]<=myE).sort((a,b)=>a[1]-b[1])[0]}
+ const supportDef=ranked.find(x=>x.c[0]!==primary?.[0]&&x.c[1]<=Math.max(0,myE-(primary?.[1]||0))&&((threatType==="air"&&x.c[2]==="air")||(threatType==="swarm"&&x.c[3]==="splash")||x.c[0]==="Zap"||x.c[0]==="Tronco"||x.c[0]==="Flechas"))?.c;
+ const defCost=(primary?.[1]||0)+(supportDef?.[1]||0),remaining=myE-defCost,phaseMult=phase==="single"?1:phase==="double"?1.5:2;
+ let attack=deck.filter(c=>c[3]==="wincon"&&c[1]<=remaining).sort((a,b)=>a[1]-b[1])[0];
+ if(!attack&&wantPush&&remaining>=2)attack=deck.filter(c=>c[1]<=remaining&&c[0]!==primary?.[0]&&c[3]!=="spell").sort((a,b)=>a[1]-b[1])[0];
+ let laneText=lane==="left"?"esquerda":lane==="right"?"direita":"centro, protegendo ambas as rotas";
+ const trade=(enemy[1]-defCost)>=2?"favorável no custo, se a defesa funcionar":(defCost<=enemy[1]?"próxima do equilíbrio":"mais cara; só vale se evitar dano importante");
+ document.getElementById("headline").textContent=primary?`Priorize ${primary[0]}`:"Defenda com a carta disponível de menor custo";
+ document.getElementById("summary").textContent=`Ameaça: ${enemy[0]}${support?` com apoio de ${support[0]}`:""}. Proteja a rota ${laneText} e evite gastar todo o elixir de uma vez.`;
+ document.getElementById("defCost").textContent=defCost+" / "+myE;document.getElementById("remaining").textContent=remaining;document.getElementById("trade").textContent=trade;
+ const steps=[];
+ if(distance==="far")steps.push(`Espere a ameaça se aproximar da sua metade da arena, se isso não colocar a torre em risco; assim sua torre ajuda na defesa.`);
+ steps.push(`Use ${primary?.[0]||"a opção defensiva disponível"} como resposta principal. Custo estimado: ${primary?.[1]||"?"} de elixir; posicione para puxar ou concentrar o dano longe da torre quando aplicável.`);
+ if(supportDef)steps.push(`Se o suporte inimigo justificar, acrescente ${supportDef[0]} (${supportDef[1]} de elixir). Não use essa carta se a ameaça já estiver neutralizada.`);
+ if(spellRisk)steps.push("Evite agrupar tropas frágeis: o adversário pode responder com feitiço.");
+ if(wantPush&&attack&&remaining>=attack[1])steps.push(`Após estabilizar a defesa, avalie ${attack[0]} na rota ${laneText}. Custo: ${attack[1]}; não ataque se o inimigo ainda tiver uma resposta eficiente ou se sua torre estiver crítica.`);
+ else steps.push("Reavalie antes de contra-atacar. Se o elixir restante for baixo, recupere o ciclo e mantenha uma resposta defensiva.");
+ if(tower==="low")steps.push("Sua torre está em estado crítico: priorize impedir dano adicional em vez de forçar um contra-ataque.");
+ if(enemyTower==="low")steps.push("A torre inimiga está baixa, mas não abandone a defesa por uma tentativa de finalização sem vantagem clara.");
+ if(phase!=="single")steps.push("Como o elixir está acelerado, considere sequências de duas cartas, mas mantenha uma resposta para a próxima ameaça.");
+ document.getElementById("steps").innerHTML=steps.map(x=>`<li>${x}</li>`).join("");
+ const reasons=[`O custo combinado sugerido é ${defCost} de elixir, deixando ${remaining}.` ,`A recomendação considera o tipo de ameaça (${threatType}), a posição (${distance}) e as cartas que você informou como disponíveis.`,`Estimativa de troca: ${trade}. O cálculo usa regras heurísticas e não simula todos os quadros da batalha.`];
+ if(hand.length===0)reasons.push("Como você não selecionou cartas na mão, o programa usou as cartas do deck como candidatas; confirme sua mão antes de seguir a recomendação.");
+ if(deck.length<8)reasons.push(`Seu deck está incompleto (${deck.length}/8 cartas), então as opções e o contra-ataque podem estar limitados.`);
+ document.getElementById("reasons").innerHTML=reasons.map(x=>`<p>• ${x}</p>`).join("");
+ document.getElementById("confidence").textContent=deck.length===8&&hand.length>=3?"DADOS PARCIAIS":"DADOS LIMITADOS";
+ document.getElementById("result").classList.add("show");document.getElementById("result").scrollIntoView({behavior:"smooth",block:"start"});
+}
+document.getElementById("analyze").addEventListener("click",recommend);
+document.getElementById("reset").addEventListener("click",()=>{document.getElementById("result").classList.remove("show");document.getElementById("enemyCard").value="";document.getElementById("enemySupport").value="";document.querySelectorAll(".hand-select").forEach(s=>s.value="");updateDeck();window.scrollTo({top:0,behavior:"smooth"})});
+document.getElementById("copy").addEventListener("click",async()=>{let r=document.getElementById("result");if(!r.classList.contains("show")){alert("Calcule uma recomendação primeiro.");return}let txt=document.getElementById("headline").textContent+"\n"+document.getElementById("summary").textContent+"\nCusto defesa: "+document.getElementById("defCost").textContent+" | Elixir restante: "+document.getElementById("remaining").textContent+"\n"+[...document.querySelectorAll("#steps li")].map((x,i)=>(i+1)+". "+x.textContent).join("\n");try{await navigator.clipboard.writeText(txt);alert("Recomendação copiada.")}catch(e){prompt("Copie sua recomendação:",txt)}});
+if("serviceWorker" in navigator && location.protocol.startsWith("http")){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
+updateDeck();
+</script></body></html>
